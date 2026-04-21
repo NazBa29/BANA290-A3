@@ -1,0 +1,119 @@
+=== Parallel Trends Test ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             EMPLOYMENT   R-squared:                       0.352
+Model:                            OLS   Adj. R-squared:                  0.283
+Method:                 Least Squares   F-statistic:                     5.078
+Date:                Tue, 21 Apr 2026   Prob (F-statistic):            0.00622
+Time:                        16:45:55   Log-Likelihood:                -317.44
+No. Observations:                  32   AIC:                             642.9
+Df Residuals:                      28   BIC:                             648.8
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==================================================================================
+                     coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------
+Intercept       2.328e+04   2200.600     10.581      0.000    1.88e+04    2.78e+04
+YEAR_C          -455.2000   1176.270     -0.387      0.702   -2864.680    1954.280
+TREATED         7188.2750   3112.118      2.310      0.028     813.391    1.36e+04
+YEAR_C:TREATED    -0.6000   1663.497     -0.000      1.000   -3408.119    3406.919
+==============================================================================
+Omnibus:                       18.395   Durbin-Watson:                   0.673
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):                3.042
+Skew:                           0.071   Prob(JB):                        0.219
+Kurtosis:                       1.496   Cond. No.                         9.84
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+=== Placebo DID (fake 2020) ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             EMPLOYMENT   R-squared:                       0.354
+Model:                            OLS   Adj. R-squared:                  0.285
+Method:                 Least Squares   F-statistic:                     5.120
+Date:                Tue, 21 Apr 2026   Prob (F-statistic):            0.00598
+Time:                        16:45:55   Log-Likelihood:                -317.40
+No. Observations:                  32   AIC:                             642.8
+Df Residuals:                      28   BIC:                             648.7
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept   2.317e+04   1857.159     12.478      0.000    1.94e+04     2.7e+04
+TREATED     7189.0000   2626.420      2.737      0.011    1809.023    1.26e+04
+FAKE_POST  -1146.0000   2626.420     -0.436      0.666   -6525.977    4233.977
+FAKE_DID      -3.2500   3714.318     -0.001      0.999   -7611.686    7605.186
+==============================================================================
+Omnibus:                       18.985   Durbin-Watson:                   0.659
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):                3.076
+Skew:                           0.072   Prob(JB):                        0.215
+Kurtosis:                       1.488   Cond. No.                         6.85
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+=== Simple Pooled DID ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             EMPLOYMENT   R-squared:                       0.475
+Model:                            OLS   Adj. R-squared:                  0.449
+Method:                 Least Squares   F-statistic:                     18.10
+Date:                Tue, 21 Apr 2026   Prob (F-statistic):           1.76e-08
+Time:                        16:45:55   Log-Likelihood:                -637.02
+No. Observations:                  64   AIC:                             1282.
+Df Residuals:                      60   BIC:                             1291.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------
+Intercept     2.26e+04   1313.614     17.205      0.000       2e+04    2.52e+04
+TREATED      7187.3750   1857.731      3.869      0.000    3471.360    1.09e+04
+POST_POLICY   300.0625   1857.731      0.162      0.872   -3415.952    4016.077
+DID          4000.3750   2627.228      1.523      0.133   -1254.863    9255.613
+==============================================================================
+Omnibus:                       47.981   Durbin-Watson:                   0.438
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):                5.504
+Skew:                           0.079   Prob(JB):                       0.0638
+Kurtosis:                       1.572   Cond. No.                         6.85
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+=== Two-Way Fixed Effects DID ===
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:             EMPLOYMENT   R-squared:                        0.6584
+Estimator:                   PanelOLS   R-squared (Between):              0.0780
+No. Observations:                  64   R-squared (Within):               0.5935
+Date:                Tue, Apr 21 2026   R-squared (Overall):              0.0805
+Time:                        16:45:55   Log-likelihood                   -511.92
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      92.502
+Entities:                           8   P-value                           0.0000
+Avg Obs:                       8.0000   Distribution:                    F(1,48)
+Min Obs:                       8.0000                                           
+Max Obs:                       8.0000   F-statistic (robust):             2206.5
+                                        P-value                           0.0000
+Time periods:                       8   Distribution:                    F(1,48)
+Avg Obs:                       8.0000                                           
+Min Obs:                       8.0000                                           
+Max Obs:                       8.0000                                           
+                                                                                
+                             Parameter Estimates                              
+==============================================================================
+            Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+------------------------------------------------------------------------------
+DID            4000.4     85.162     46.974     0.0000      3829.1      4171.6
+==============================================================================
+
+F-test for Poolability: 222.16
+P-value: 0.0000
+Distribution: F(14,48)
+
+Included effects: Entity, Time

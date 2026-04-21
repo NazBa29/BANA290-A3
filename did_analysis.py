@@ -222,3 +222,144 @@ print(f"Years: {panel_df['YEAR'].nunique()}")
 # Save the cleaned panel
 panel_df.to_csv("clean_panel.csv", index=False)
 print("\nSaved clean_panel.csv")
+
+
+# ============================================================
+# PHASE 3: ANALYZE
+# ============================================================
+
+# Copilot prompt: Import matplotlib for plotting and statsmodels for
+# OLS regression, plus linearmodels for two-way fixed effects DID.
+import matplotlib.pyplot as plt
+import statsmodels.formula.api as smf
+from linearmodels.panel import PanelOLS
+
+# Reload the cleaned panel for a clean Phase 3 start
+panel_df = pd.read_csv("clean_panel.csv")
+
+# ------------------------------------------------------------
+# Step 3.1: Visual Analysis - Plot employment trends
+# ------------------------------------------------------------
+# Copilot prompt: Compute the average employment per year for the
+# treated (Ohio) and control (Pennsylvania) groups, then plot both
+# trends on a single chart with a vertical line at the 2022 policy
+# start year. Save the figure as parallel_trends.png.
+
+group_trends = panel_df.groupby(["YEAR", "STATE"])["EMPLOYMENT"].mean().reset_index()
+trends_wide = group_trends.pivot(index="YEAR", columns="STATE", values="EMPLOYMENT")
+
+plt.figure(figsize=(10, 6))
+plt.plot(trends_wide.index, trends_wide["Ohio"], marker="o",
+         linewidth=2, label="Ohio (Treated)", color="#d62728")
+plt.plot(trends_wide.index, trends_wide["Pennsylvania"], marker="s",
+         linewidth=2, label="Pennsylvania (Control)", color="#1f77b4")
+plt.axvline(x=2022, color="gray", linestyle="--", linewidth=1.5,
+            label="Policy start (2022)")
+plt.xlabel("Year")
+plt.ylabel("Average County Employment")
+plt.title("Employment Trends: Treated vs. Control (2018-2025)")
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.savefig("parallel_trends.png", dpi=150)
+plt.close()
+print("Saved parallel_trends.png")
+
+print("\nGroup-year means:")
+print(trends_wide)
+
+# ------------------------------------------------------------
+# Step 3.2: Parallel Trends Test (pre-treatment period)
+# ------------------------------------------------------------
+# Copilot prompt: Test whether Ohio and Pennsylvania moved in parallel
+# BEFORE 2022. Run a regression on pre-2022 data of EMPLOYMENT on YEAR,
+# TREATED, and their interaction. If the interaction coefficient is
+# statistically insignificant, the parallel-trends assumption is supported.
+
+pre_df = panel_df[panel_df["YEAR"] < 2022].copy()
+pre_df["YEAR_C"] = pre_df["YEAR"] - 2018  # center year at 0
+
+pt_model = smf.ols("EMPLOYMENT ~ YEAR_C * TREATED", data=pre_df).fit()
+print("\n=== Parallel Trends Test (pre-2022 only) ===")
+print(pt_model.summary())
+
+interaction_pval = pt_model.pvalues["YEAR_C:TREATED"]
+if interaction_pval > 0.10:
+    print(f"\n==> Interaction p-value = {interaction_pval:.4f} (> 0.10)")
+    print("==> Parallel trends assumption is SUPPORTED.")
+else:
+    print(f"\n==> Interaction p-value = {interaction_pval:.4f} (<= 0.10)")
+    print("==> Parallel trends assumption is VIOLATED.")
+
+# ------------------------------------------------------------
+# Step 3.3: Placebo Test
+# ------------------------------------------------------------
+# Copilot prompt: Run a placebo DID using 2020 as a fake policy year,
+# on pre-2022 data only. If the placebo DID coefficient is small and
+# insignificant, there were no anticipatory effects before the real
+# policy started.
+
+placebo_df = panel_df[panel_df["YEAR"] < 2022].copy()
+placebo_df["FAKE_POST"] = (placebo_df["YEAR"] >= 2020).astype(int)
+placebo_df["FAKE_DID"] = placebo_df["TREATED"] * placebo_df["FAKE_POST"]
+
+placebo_model = smf.ols(
+    "EMPLOYMENT ~ TREATED + FAKE_POST + FAKE_DID",
+    data=placebo_df
+).fit()
+print("\n=== Placebo DID (fake policy in 2020, using only pre-2022 data) ===")
+print(placebo_model.summary())
+
+placebo_coef = placebo_model.params["FAKE_DID"]
+placebo_pval = placebo_model.pvalues["FAKE_DID"]
+print(f"\n==> Placebo DID coefficient = {placebo_coef:.2f}, p-value = {placebo_pval:.4f}")
+if placebo_pval > 0.10:
+    print("==> No anticipatory effect detected. Good.")
+else:
+    print("==> Significant placebo effect detected — DID identification may be problematic.")
+
+# ------------------------------------------------------------
+# Step 3.4: Main DID Estimation - Two-Way Fixed Effects
+# ------------------------------------------------------------
+# Copilot prompt: Run the main DID regression using two-way fixed
+# effects (county fixed effects + year fixed effects). The coefficient
+# on TREATED*POST_POLICY is the causal effect of the subsidy.
+
+# Simple pooled DID (for comparison)
+simple_did = smf.ols(
+    "EMPLOYMENT ~ TREATED + POST_POLICY + DID",
+    data=panel_df
+).fit()
+print("\n=== Simple Pooled DID (no fixed effects) ===")
+print(simple_did.summary())
+
+# Two-way fixed effects DID
+fe_df = panel_df.set_index(["COUNTY_STATE", "YEAR"])
+fe_model = PanelOLS.from_formula(
+    "EMPLOYMENT ~ DID + EntityEffects + TimeEffects",
+    data=fe_df
+).fit(cov_type="clustered", cluster_entity=True)
+
+print("\n=== Two-Way Fixed Effects DID (county FE + year FE) ===")
+print(fe_model)
+
+did_coef = fe_model.params["DID"]
+did_pval = fe_model.pvalues["DID"]
+print(f"\n==> DID coefficient (causal effect) = {did_coef:.2f}")
+print(f"==> p-value = {did_pval:.4f}")
+print(f"==> Interpretation: the AI training subsidy is associated with")
+print(f"    a change of {did_coef:.0f} jobs per county-year in Ohio relative to Pennsylvania.")
+
+# Save regression outputs to a text file for the LaTeX writeup
+with open("regression_results.txt", "w") as f:
+    f.write("=== Parallel Trends Test ===\n")
+    f.write(str(pt_model.summary()))
+    f.write("\n\n=== Placebo DID (fake 2020) ===\n")
+    f.write(str(placebo_model.summary()))
+    f.write("\n\n=== Simple Pooled DID ===\n")
+    f.write(str(simple_did.summary()))
+    f.write("\n\n=== Two-Way Fixed Effects DID ===\n")
+    f.write(str(fe_model))
+
+print("\nSaved regression_results.txt")
+print("\n=== PHASE 3 COMPLETE ===")
