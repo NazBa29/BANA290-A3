@@ -1,0 +1,65 @@
+COUNTY_STATE,STATE,YEAR,EMPLOYMENT,TREATED,POST_POLICY,DID,BRIEF_TITLE
+"Beaver County, Pennsylvania",Pennsylvania,2018,27000,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Beaver County, Pennsylvania",Pennsylvania,2019,26500,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Beaver County, Pennsylvania",Pennsylvania,2020,25300,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Beaver County, Pennsylvania",Pennsylvania,2021,25821,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Beaver County, Pennsylvania",Pennsylvania,2022,26053,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Beaver County, Pennsylvania",Pennsylvania,2023,26400,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Beaver County, Pennsylvania",Pennsylvania,2024,26600,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Beaver County, Pennsylvania",Pennsylvania,2025,26900,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Erie County, Pennsylvania",Pennsylvania,2018,30860,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Erie County, Pennsylvania",Pennsylvania,2019,30327,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Erie County, Pennsylvania",Pennsylvania,2020,29200,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Erie County, Pennsylvania",Pennsylvania,2021,29700,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Erie County, Pennsylvania",Pennsylvania,2022,29900,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Erie County, Pennsylvania",Pennsylvania,2023,30200,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Erie County, Pennsylvania",Pennsylvania,2024,30402,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Erie County, Pennsylvania",Pennsylvania,2025,30634,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Lawrence County, Pennsylvania",Pennsylvania,2018,17285,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lawrence County, Pennsylvania",Pennsylvania,2019,16821,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lawrence County, Pennsylvania",Pennsylvania,2020,15700,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lawrence County, Pennsylvania",Pennsylvania,2021,16200,0,0,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lawrence County, Pennsylvania",Pennsylvania,2022,16400,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lawrence County, Pennsylvania",Pennsylvania,2023,16700,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lawrence County, Pennsylvania",Pennsylvania,2024,16926,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lawrence County, Pennsylvania",Pennsylvania,2025,17167,0,1,0,Pennsylvania Benchmark District: Beaver-Lawrence Belt
+"Lucas County, Ohio",Ohio,2018,32620,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Lucas County, Ohio",Ohio,2019,32055,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Lucas County, Ohio",Ohio,2020,30900,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Lucas County, Ohio",Ohio,2021,31400,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Lucas County, Ohio",Ohio,2022,33400,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Lucas County, Ohio",Ohio,2023,34600,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Lucas County, Ohio",Ohio,2024,36645,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Lucas County, Ohio",Ohio,2025,39500,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Mahoning County, Ohio",Ohio,2018,29210,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Mahoning County, Ohio",Ohio,2019,28720,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Mahoning County, Ohio",Ohio,2020,27500,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Mahoning County, Ohio",Ohio,2021,28100,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Mahoning County, Ohio",Ohio,2022,30000,1,1,1,Ohio Grant Corridor: Mahoning Valley
+"Mahoning County, Ohio",Ohio,2023,31200,1,1,1,Ohio Grant Corridor: Mahoning Valley
+"Mahoning County, Ohio",Ohio,2024,33215,1,1,1,Ohio Grant Corridor: Mahoning Valley
+"Mahoning County, Ohio",Ohio,2025,36035,1,1,1,Ohio Grant Corridor: Mahoning Valley
+"Mercer County, Pennsylvania",Pennsylvania,2018,18500,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Mercer County, Pennsylvania",Pennsylvania,2019,18100,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Mercer County, Pennsylvania",Pennsylvania,2020,16900,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Mercer County, Pennsylvania",Pennsylvania,2021,17404,0,0,0,Pennsylvania Benchmark District: Northern Border
+"Mercer County, Pennsylvania",Pennsylvania,2022,17637,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Mercer County, Pennsylvania",Pennsylvania,2023,17900,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Mercer County, Pennsylvania",Pennsylvania,2024,18200,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Mercer County, Pennsylvania",Pennsylvania,2025,18400,0,1,0,Pennsylvania Benchmark District: Northern Border
+"Stark County, Ohio",Ohio,2018,35700,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Stark County, Ohio",Ohio,2019,35200,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Stark County, Ohio",Ohio,2020,34100,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Stark County, Ohio",Ohio,2021,34600,1,0,0,Ohio Grant Corridor: Lake Manufacturing Ring
+"Stark County, Ohio",Ohio,2022,36640,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Stark County, Ohio",Ohio,2023,38000,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Stark County, Ohio",Ohio,2024,40100,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Stark County, Ohio",Ohio,2025,43000,1,1,1,Ohio Grant Corridor: Lake Manufacturing Ring
+"Trumbull County, Ohio",Ohio,2018,24900,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Trumbull County, Ohio",Ohio,2019,24500,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Trumbull County, Ohio",Ohio,2020,23300,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Trumbull County, Ohio",Ohio,2021,23811,1,0,0,Ohio Grant Corridor: Mahoning Valley
+"Trumbull County, Ohio",Ohio,2022,25688,1,1,1,Ohio Grant Corridor: Mahoning Valley
+"Trumbull County, Ohio",Ohio,2023,26900,1,1,1,Ohio Grant Corridor: Mahoning Valley
+"Trumbull County, Ohio",Ohio,2024,28900,1,1,1,Ohio Grant Corridor: Mahoning Valley
+"Trumbull County, Ohio",Ohio,2025,31600,1,1,1,Ohio Grant Corridor: Mahoning Valley
