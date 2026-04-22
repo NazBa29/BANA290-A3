@@ -6,15 +6,47 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{float}
 \onehalfspacing
 
-\title{DID Analysis of AI Training Subsidy on Regional Employment}
+\title{DID Analysis of a Regional AI Training Subsidy\\on Local Manufacturing Employment}
 \author{Ilnaz Bagheri}
-\date{\today}
+\date{April 2026}
 
 \begin{document}
 \maketitle
 
-% Interpretation (~250 words) goes here after analysis is complete.
+\section*{Interpretation}
+
+This study evaluates the causal effect of a 2022 regional AI and robotics upskilling subsidy on county-level manufacturing employment using a Difference-in-Differences (DID) framework. The panel consists of eight counties across the Rust Belt observed annually from 2018 to 2025: four treated counties in Ohio that received the grant and four comparison counties in Pennsylvania that did not.
+
+\paragraph{Estimated Causal Effect.} The two-way fixed-effects DID specification, which absorbs time-invariant county characteristics and common year shocks, yields a coefficient of \textbf{+4{,}000 jobs per county-year} on the TREATED $\times$ POST\_POLICY interaction, significant at the 0.1\% level (p $<$ 0.001, clustered standard errors). Relative to Pennsylvania, Ohio counties gained roughly four thousand manufacturing jobs per year following the subsidy, implying that the policy was economically consequential and not explained by secular national trends.
+
+\paragraph{Validity of Identification.} The parallel-trends assumption is strongly supported: regressing employment on year, treatment, and their interaction on the pre-2022 subsample produced an interaction $p$-value of 0.9997, indicating the two groups moved in parallel before the intervention. The placebo test, which assigned a fake 2020 policy date using only pre-treatment data, returned a coefficient of $-3.25$ ($p = 0.999$), ruling out anticipatory effects. Both diagnostics increase confidence that the estimated effect reflects the causal impact of the subsidy rather than pre-existing divergence.
+
+\paragraph{Labor Market Implications.} The positive DID estimate is consistent with \textit{job creation} rather than displacement: upskilling subsidies appear to have raised labor demand in Ohio's AI-adjacent manufacturing sectors without a corresponding negative spillover in nearby Pennsylvania counties, which would have appeared as a widening gap from a different source. However, this design cannot rule out displacement occurring outside the sampled region or within occupations not captured in the aggregate employment counts. Distinguishing net creation from within-region reallocation would require finer, occupation-level data.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{parallel_trends.png}
+    \caption{Average county employment for treated (Ohio) and control (Pennsylvania) groups, 2018--2025. The vertical dashed line marks the 2022 policy start.}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \caption{DID Regression Results}
+    \begin{tabular}{lcc}
+        \toprule
+        Specification & DID Coefficient & $p$-value \\
+        \midrule
+        Simple Pooled DID               & 4{,}000.38 & 0.133 \\
+        Two-Way Fixed Effects DID       & 4{,}000.37 & $<$0.001 \\
+        Placebo DID (fake 2020)         & $-3.25$    & 0.999 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \end{document}
